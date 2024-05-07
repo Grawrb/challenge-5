@@ -11,20 +11,21 @@ const projectDateInputEl = $('#taskDueDate');
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-    const timestamp = Date.now();
-    const randomNumber = Math.floor(Math.random() * 9000) + 1000; 
-    const taskId = `TASK-${timestamp}-${randomNumber}`;
-    return taskId;
+    return Math.random().toString(36).substring(2,9);
 }
 
 console.log(generateTaskId());
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-    
+    // show modal already designed in html
+//    create elements (task name (), due date(), and task description('p'))
+   
 }
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    //pull tasks from local storage
+    // 
 
 }
 
