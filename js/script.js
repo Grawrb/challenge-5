@@ -2,77 +2,72 @@
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
-const timeDisplayEl = $('#time-display');
-const projectDisplayEl = $('#project-display');
-const projectFormEl = $('#project-form');
-const projectNameInputEl = $('#project-name-input');
-const projectTypeInputEl = $('#project-type-input');
-const projectDateInputEl = $('#taskDueDate');
+// const timeDisplayEl = $('#time-display');
+// const projectDisplayEl = $('#project-display');
+// const projectFormEl = $('#project-form');
+// const projectNameInputEl = $('#project-name-input');
+// const projectTypeInputEl = $('#project-type-input');
+// const projectDateInputEl = $('#taskDueDate');
+
+let taskName = document.getElementById('taskName');
+let dueDate = document.getElementById('dueDate');
+let taskDescription = document.getElementById('taskDescription')
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-    return Math.random().toString(36).substring(2,9);
-}
+  let taskId = Math.random().toString(36).substring(2,9);
+  localStorage.setItem('nextID', taskId);
+  console.log(taskId); 
+};
+generateTaskId();
 
-console.log(generateTaskId());
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+  const taskCard = $('div')
+    .addClass('card task-card draggable my-3')
+    .attr('data-task-id', task.id);
+  const cardHeader = $('<div>').addClass('card-header h4').text(task.name);
+  const cardBody = $('<div>').addClass('card-body');
+  const cardDescription = $('<p>').addClass('card-text').text(task.type);
+  const cardDueDate = $('<p>').addClass('card-text').text(task.dueDate);
+  const cardDeleteBtn = $('<button>')
+    .addClass('btn btn-danger delete')
+    .text('Delete')
+    .attr('data-task-id', task.id);
+  cardDeleteBtn.on('click', handleDeleteTask); 
 
-   
+  // Set background color based on due date for each card
+  
+  if (task.dueDate && task.status !== 'done') {
+    const now = dayjs();
+    const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
+
+    if (now.isSame(taskDueDate, 'day')) {
+      taskCard.addClass('bg-warning text-white');
+    } else if (now.isAfter(taskDueDate)) {
+      taskCard.addClass('bg-danger text-white');
+      cardDeleteBtn.addClass('border-light');
+    }
+  }
+
+  cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
+  taskCard.append(cardHeader, cardBody);
+
+  return taskCard;
 }
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
     //pull task cards from local storage
     // 
 // Make the taskCard element draggable:
-dragElement(document.getElementById("taskCard"));
 
-function dragElement(elmnt) {
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the taskCard from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the taskCard from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-};
 };
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){          
 // click listener in modal, add task btn
+
 // grab value of title
 // validate that input exists
 // grab value of due date
