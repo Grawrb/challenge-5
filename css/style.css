@@ -9,7 +9,6 @@ body {
 
 .task-card {
   margin: 0 auto;
-  /* Make task card postion absolute for draggable functionality */
 }
 
 .task-card:hover {

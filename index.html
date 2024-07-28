@@ -25,7 +25,7 @@
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
     </div>
     <!--Create a modal with a form to add tasks -->
-   
+    <!--Form inside modal content-->
     <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -34,22 +34,23 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <!-- Task card form elements -->
-            <form id="addTaskForm">
+            <form>
+              <!--Form fields for task title, due date, and description-->
               <div class="mb-3">
-                <label for="taskName" class="form-label">Task Name</label>
-                <input type="text" class="form-control" id="taskName" required>
+                <label for="taskTitle" class="row">Task Title</label>
+                <input type="text" class="form-control" id="taskTitle">
+                <label for="taskDueDate" class="row">Task Due Date</label>
+                <input type="text" class="form-control" id="taskDueDate">
               </div>
               <div class="mb-3">
-                <label for="dueDate" class="form-label">Due Date</label>
-                <input type="date" class="form-control" id="dueDate" required>
+                <label for="taskDescription" class="row">Task Description</label>
+                <textarea class="form-control" id="taskDescription"></textarea>
               </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Add</button>
             </form>
+          </div>
+          <!--Modal footer with a button to submit the form-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-target=".modal-body" id="submitButton">Add Task</button>
           </div>
         </div>
       </div>
