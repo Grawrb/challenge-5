@@ -24,30 +24,36 @@
     <div class="text-center mb-5">
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
     </div>
-    <!-- Todo: Create a modal with a form to add tasks -->
+    <!--Create a modal with a form to add tasks -->
    
-    <div class="modal" id ="formModal" tabindex="-1">
+    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">New task</h5>
+            <h5 class="modal-title" id="formModalLabel">Add Task</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="newTask" name="taskForm">
-              <input type="text" id = "taskName" placeholder="Task name">
-              <input type="date" id = "dueDate">
-              <input type="text" id="taskDescription" placeholder="Description">
+            <!-- Task card form elements -->
+            <form id="addTaskForm">
+              <div class="mb-3">
+                <label for="taskName" class="form-label">Task Name</label>
+                <input type="text" class="form-control" id="taskName" required>
+              </div>
+              <div class="mb-3">
+                <label for="dueDate" class="form-label">Due Date</label>
+                <input type="date" class="form-control" id="dueDate" required>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Add</button>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" id="addTaskBtn">Add task</button>
           </div>
         </div>
       </div>
     </div>
-
     <!---->
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">

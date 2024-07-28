@@ -31,4 +31,4 @@
 
 ## Additional Links
 
-<a href="https://github.com/Grawrb" alt="GitHub Profile Link">GitHub Profile - Grawrb - RobertMaxfield </a>
+<a href="https://github.com/Grawrb" alt="GitHub Profile Link">GitHub Profile - Grawrb - Robert Maxfield </a>
