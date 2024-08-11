@@ -7,7 +7,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Images](#images)
-- [Additional Links]()
+- [Additional Links](#additional-links)
 
 ## Description
 
