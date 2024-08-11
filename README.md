@@ -5,6 +5,7 @@
 ## Table of Contents
 - [Description](#description)
 - [Installation](#installation)
+- [Usage](#usage)
 - [Images](#images)
 - [Additional Links]()
 
@@ -25,9 +26,16 @@
 
    <a href="https://grawrb.github.io/challenge-5/" alt="Deployed App Link">Kanban Task Board </a>
 
+## Usage
+
+- This simple application can be used to track tasks
+- There are seperate columns or "lanes" that task cards can be to tragged to track progress
+- Task cards will change color depending on time left until assigned due date
+- Task cards can also be deleted from a button within the card itself
+
 ## Images
 
-- ![Screenshot](screenshot link here)
+- ![Screenshot](challenge-5\challenge-5\assets\Screenshot(4).png)
 
 ## Additional Links
 
