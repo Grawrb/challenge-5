@@ -35,7 +35,7 @@ function createTaskCard(task) {
     <h5 class="card-title">${task.taskTitle}</h5>
     <p class ="card-text"><strong>Due Date:</strong> ${task.taskDueDate}</p>
     <p class="card-text">${task.taskDescription}</p>
-    <button class="btn btn-danger btn-sm delete-task" data-task-id="${task.id}">Delete</button>
+    <button class="btn btn-danger btn-sm delete-task" data-task-id="${task.id}" onclick="handleDeleteTask(this)">Delete</button>
     </div>
     </div>
     `;
@@ -54,10 +54,6 @@ function renderTaskList() {
     $(`#${task.status}-cards`).append(card);
   });
 
-  if (taskList.length > 0) {
-    //Apply event listener to the delete buttons.
-    $(".delete-task").on("click", handleDeleteTask);
-  }
   // Make the cards draggable
   $(".draggable").draggable({
     opacity: 0.7,
@@ -75,7 +71,7 @@ function renderTaskList() {
   });
 }
 
-// Todo: create a function to handle adding a new task
+// Function to handle adding a new task
 function handleAddTask(event) {
   // Prevent the default behavior of the form
   event.preventDefault();
@@ -98,23 +94,28 @@ function handleAddTask(event) {
   localStorage.setItem("tasks", JSON.stringify(taskList));
   // Renders the task list to the page from the taskList array in localStorage
   renderTaskList();
+  $("#formModal").modal('hide');
+  $("#taskTitle").val('');
+  $("#taskDueDate").val('');
+  $("#taskDescription").val('');
 }
 
-// Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {
+// Function to handle deleting a task
+function handleDeleteTask(that) {
+  console.log('handleDeleteTask', that);
   // Variable for task id selected to delete task by id
-  const taskId = $(this).attr("data-task-id");
+  const taskId = $(that).attr("data-task-id");
   // Filter the taskList array to remove the task with the selected id
-  taskList = taskList.filter((task) => task.id !== parseInt(taskId));
+  taskList = taskList.filter((task) => task.id !== taskId);
   // Remove the card from the page
-  $(this).closest(".card").remove();
+  $(that).closest("#card").remove();
   // Store the updated taskList array in localStorage
   localStorage.setItem("tasks", JSON.stringify(taskList));
   // Render the updated task list to the page
   renderTaskList();
 }
 
-// Todo: create a function to handle dropping a task into a new status lane
+// Function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
   // Variable for task id selected to move task by id
   const taskId = ui.helper.attr("id");
@@ -127,7 +128,7 @@ function handleDrop(event, ui) {
   taskList = taskList.map((task) => {
     // If the task id is equal to the task id selected
 
-    if (task.id === parseInt(taskId)) {
+    if (task.id === taskId) {
       // Set the task status to the new status
       task.status = newStatus;
     }
@@ -140,7 +141,7 @@ function handleDrop(event, ui) {
   renderTaskList();
 }
 
-// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+// When the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
   // Render the task list to the page
   renderTaskList();

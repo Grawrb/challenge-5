@@ -23,7 +23,7 @@
 
 - No installation required. Simply click the link below to be taken directly to the deployed application.
 
-   <Deployed app link>
+   <a href="https://grawrb.github.io/challenge-5/" alt="Deployed App Link">Kanban Task Board </a>
 
 ## Images
 
